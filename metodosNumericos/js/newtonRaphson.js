@@ -1,17 +1,17 @@
 
 function raiz(){
-	var res=biseccion();
+	var res=newtonRaphson();
 	if(!res){return;}
   
-  dibujarPunto(res.raiz,0);  
+  dibujarRaiz(res.raiz);  
 	$("#raiz").html("<H3>Raiz="+res.raiz+"<H3>");
 	$("#cantPasos").text("Cant. pasos= "+res.cantPasos);
 	$("#errorMaximo").text("Error máximo="+res.errorMax);
 }
 
 
-function biseccion(){
-	var a=parseFloat($("#aproxInf").val());
+function newtonRaphson(){
+	var fp=parseFloat($("#derivada").val());
 	var b=parseFloat($("#aproxSup").val());
 	var c;
 	var eps=parseFloat($("#errorMax").val());

@@ -23,50 +23,54 @@
       <div class="row">
         <div class="col-sm-4">
           <form>
-            <div class="form-group">
-              <label for="funcion">Insertar Función</label>
-              <input type="text" class="form-control" id="funcion" placeholder="Ej: 3*x^2">
-            </div>
+            <div class="row">
 
-            <div class="form-inline" id="formLimGraficos">
+              <div class="form-group">
+                <label for="funcion">Insertar Función</label>
+                <input type="text" class="form-control" id="funcion" placeholder="Ej: 3*x^2">
+              </div>
+
+              <div class="form-inline" id="formLimGraficos">
                 <label for="xMin" class="sr-only">x Mín</label>
                 <input type="text" class="form-control" id="xMin" placeholder="x Mínimo. Ej: -5">            
                 <label for="xMax" class="sr-only">x Máx</label>
                 <input type="text" class="form-control" id="xMax" placeholder="x Máximo. Ej: 5">
-            </div>
-
-            <div class="form-group">
-              <button type="button" class="btn" onClick="graficar()">Graficar</button>
-            </div>
-
-            <div class="row">
-              <div class="form-group hidden" id="derivada">
-                <label class="derivada">Insertar derivada</label>
-                <input type="text" class="form-control" id="derivada" placeholder="Ej: 6*x">  
               </div>
-            </div>
 
-            <div class="row">
-              <div class="form-group hidden" id="derivada">
-                <label class="derivada">Insertar derivada</label>
-                <input type="text" class="form-control" id="derivada" placeholder="Ej: 6*x">  
-                <input type="text" class="form-control" id="aproxInf" oninput="actualizarLineasAprox(this)">   
-                <input type="text" class="form-control" id="aproxSup" oninput="actualizarLineasAprox(this)">
+              <div class="form-group">
+                <button type="button" class="btn" onClick="graficar()">Graficar</button>
               </div>
-            </div>    
+
+            </div>  
+
 
             <div class="row hidden" id="infoExtra">
-              <div class="col-sm-6">
-                <label for="cantPasosMax" class="control-label">Cant. pasos</label>
-                <input type="text" class="form-control" id="cantPasosMax" value="100">
+              <div class="row">
+                <div class="col-sm-8">
+                  <label for="derivada" class="control-label">Insertar Derivada</label>
+                  <input type="text" class="form-control" id="derivada" placeholder="Ej: 6*x">
+                </div>
+                <div class="col-sm-4 form-horizontal">  
+                  <label for="x0" class="control-label">x<sub>0</sub></label>
+                  <input type="text" class="form-control" id="x0" placeholder="0">
+                </div>
               </div>
-              <div class="col-sm-6">  
-                <label for="errorMax" class="control-label">Error máx</label>
-                <input type="text" class="form-control" id="errorMax" value="1E-6">
+            
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="cantPasosMax" class="control-label">Cant. pasos</label>
+                  <input type="text" class="form-control" id="cantPasosMax" value="100">
+                </div>
+                <div class="col-sm-6">  
+                  <label for="errorMax" class="control-label">Error máx</label>
+                  <input type="text" class="form-control" id="errorMax" value="1E-6">
+                </div>
               </div>
-              <div class="form-group col-sm-6">
-                <button type="button" class="btn btn-primary" id="buscarRaiz" onClick="raiz()">Buscar Raíz</button>
-              </div>  
+              <div class="row">  
+                <div class="form-group col-sm-6">
+                  <button type="button" class="btn btn-primary" id="buscarRaiz" onClick="raiz()">Buscar Raíz</button>
+                </div>  
+              </div>
             </div>  
             
           </form>
