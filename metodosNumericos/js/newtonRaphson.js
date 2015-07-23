@@ -3,7 +3,7 @@ function raiz(){
 	var res=newtonRaphson();
 	if(!res){return;}
 
-  dibujarRaiz(res.raiz);
+  	dibujarRaiz(res.raiz);
 	$("#raiz").html("<H3>Raiz="+res.raiz+"<H3>");
 	$("#cantPasos").text("Cant. pasos= "+res.cantPasos);
 	$("#errorMaximo").text("Error máximo="+res.errorMax);
