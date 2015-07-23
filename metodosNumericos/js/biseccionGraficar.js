@@ -1,4 +1,3 @@
-
 function dibujarLineas(){
   var curva=board.elementsByName["curva"];
   xMin=curva.minX();
@@ -7,7 +6,7 @@ function dibujarLineas(){
     {strokeColor: '#0000FF', name: 'aproxInf'});
   board.create('line',[[xMax-(xMax-xMin)/4,0], [xMax-(xMax-xMin)/4,1]],
     {strokeColor: '#0000FF', name: 'aproxSup'});
-  
+
   actualizarInputsAprox();
 }
 

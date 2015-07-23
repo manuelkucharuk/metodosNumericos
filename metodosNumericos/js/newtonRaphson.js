@@ -2,8 +2,8 @@
 function raiz(){
 	var res=newtonRaphson();
 	if(!res){return;}
-  
-  dibujarRaiz(res.raiz);  
+
+  dibujarRaiz(res.raiz);
 	$("#raiz").html("<H3>Raiz="+res.raiz+"<H3>");
 	$("#cantPasos").text("Cant. pasos= "+res.cantPasos);
 	$("#errorMaximo").text("Error máximo="+res.errorMax);
@@ -11,49 +11,32 @@ function raiz(){
 
 
 function newtonRaphson(){
-	var fp=parseFloat($("#derivada").val());
-	var b=parseFloat($("#aproxSup").val());
-	var c;
+	var fp=function(x){return Parser.parse($("#derivada").val()).evaluate({x: x});}
+	var x0=parseFloat($("#x0").val());
+	var x1=x0;
 	var eps=parseFloat($("#errorMax").val());
 	var n=parseInt($("#cantPasosMax").val());
 
 	var i=0;
+	var d=Infinity;
+	var exito=true;
+	while(d>eps && i<n){
+		x1=x0-f(x0)/fp(x0);
+		if (d<Math.abs(x1-x0)){ //Si no se reduce la diferencia, el metodo no converge
+			exito=false;
+			break;
+		}
+		//console.log(x0,x1,d,i);
+		d=Math.abs(x1-x0);
+		x0=x1;
+		i++;
+	}
 
-  if (sgn(f(a))==sgn(f(b))){alert("Los signos de f(x) son iguales en los límites de aproximación"); return null;}
-  var tol=Infinity; //Infinito para que siempre entre al while
-
-  while(tol>eps && i<n){
-    tol=Math.abs(b-a);
-    sa=sgn(f(a));
-    sb=sgn(f(b));
-    
-    if(sa==0){
-      c=a;
-      tol=0;
-      break;
-    }
-    else if(sb==0){
-      c=b;
-      tol=0;
-      break;
-    }
-    
-    c=(b+a)/2;
-    sc=sgn(f(c));
-    if(sc==0){
-      tol=0;
-      break;
-    }
-    if(sa==sc){a=c;}
-    else{b=c;}
-    
-    i++;
-  }
-
-  if(tol>eps || i>=n) {
+	if(exito){
+		return {errorMax: d, cantPasos: i-1, raiz: x1};
+	}
+	else{
   	alert("No se alcanzó la precisión de "+eps+" en "+n+" pasos");
   	return null;
   }
-  
-  return {errorMax: tol, cantPasos: i, raiz: c};
 }
