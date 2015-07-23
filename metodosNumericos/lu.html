@@ -15,6 +15,29 @@
     <script language="javascript" type="text/javascript" src="js/lu.js"></script>
   </head>
   <body>
-    <div id="tablaA"></div>
+    <div class="container">
+      <div class="row">
+        <div class="page-header">
+          <h1>LU <small>Sistemas de ecuaciones lineales</small></h1>
+        </div>
+      </div>  
+      <div class="row">
+        <div class="col-sm-6">
+          <label>Matriz A</label> 
+          <div id="matrizA" style="overflow: auto"></div>
+        </div>
+        <div class="col-sm-2">
+          <label>Vector b</label> 
+          <div id="vectorB" style="overflow: auto"></div>
+        </div>
+        <div id="resultado" class="col-sm-2">
+          <label>Vector x</label> 
+          <div id="vectorX" style="overflow: auto"></div>
+        </div>
+        <div class="col-sm-2">
+          <button type="button" class="btn btn-primary" id="resolver" onClick="resolver()">Resolver Ax=b</button>
+        </div>
+      </div>     
+    </div>
   </body>
 </html>
