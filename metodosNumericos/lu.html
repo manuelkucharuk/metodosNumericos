@@ -12,6 +12,7 @@
     <script language="javascript" type="text/javascript" src="../js/bootstrap.min.js"></script>
     <script language="javascript" type="text/javascript" src="../js/handsontable.full.min.js"></script>
        
+    <script language="javascript" type="text/javascript" src="js/luSoporte.js"></script>
     <script language="javascript" type="text/javascript" src="js/lu.js"></script>
   </head>
   <body>
@@ -26,32 +27,50 @@
           <label>Matriz A</label> 
           <div id="matrizA" style="overflow: auto"></div>
         </div>
-        <div class="col-sm-2">
-          <label>Vector b</label> 
-          <div id="vectorB" style="overflow: auto"></div>
-        </div>
         <div id="resultado" class="col-sm-2">
           <label>Vector x</label> 
           <div id="vectorX" style="overflow: auto"></div>
         </div>
         <div class="col-sm-2">
+          <label>Vector b</label> 
+          <div id="vectorB" style="overflow: auto"></div>
+        </div>
+        <div class="col-sm-2">
           <button type="button" class="btn btn-primary" id="resolver" onClick="resolver()">Resolver Ax=b</button>
+          <button type="button" class="btn" id="btnInfoAdicional" onClick="mostrarInfoExtra()">Mostrar info. adicional</button>
         </div>
       </div>
+    </div>
+
+    <div class="container" id="infoAdicional">
+      <hr>
       <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-4">
           <label>Matriz L</label> 
           <div id="matrizL"></div>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-4">
           <label>Matriz U</label> 
           <div id="matrizU"></div>
         </div>
-        <div class="col-sm-2">
-          <label>Vector P</label> 
+        <div class="col-sm-4">
+          <label>Vector de permutación</label> 
           <div id="vectorP"></div>
         </div>
       </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-4">
+          <label>Matriz A<sup>-1</sup></label> 
+          <div id="matrizAinv"></div>
+        </div>
+        <div class="col-sm-4">
+          <label>Determinante</label> 
+          <div id="det"></div>
+        </div>
+
+      </div>
+    </div>
 
     </div>
   </body>
