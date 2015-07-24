@@ -11,10 +11,9 @@ $(document).ready(function(){
         [0, 2, 2]
       ];
 
-  b = [[11], [6], [10]];    
-  
-  var contA = document.getElementById('matrizA');
-  var htMatrizA = new Handsontable(contA, {
+  b = [[11], [6], [10]];
+
+  var htMatrizA = new Handsontable($("#matrizA")[0], {
     data: A,
     minSpareRows: 1,
     minSpareCols: 1,
@@ -22,16 +21,15 @@ $(document).ready(function(){
     colHeaders: false,
     contextMenu: true
   });
-  
-  var contB = document.getElementById("vectorB");
-  var htVectorB = new Handsontable(contB, {
+
+  var htVectorB = new Handsontable($("#vectorB")[0], {
     data: b,
     maxCols: 1,
     minSpareRows: 1,
     minSpareCols: 0,
     rowHeaders: false,
     colHeaders: false,
-    contextMenu: true  
+    contextMenu: true
   });
 });
 
@@ -39,8 +37,13 @@ function resolver(){
   var bb=b.slice(0,-1);
   var res=descomposicionLU(A.slice(0,-1));
 
-  var contL = document.getElementById('matrizL');
-  var htMatrizL = new Handsontable(contL, {
+  $("#matrizL").html("");
+  $("#matrizU").html("");
+  $("#vectorP").html("");
+
+  if(!res) return;
+  
+  var htMatrizL = new Handsontable($("#matrizL")[0], {
     data: res.L,
     minSpareRows: 0,
     minSpareCols: 0,
@@ -49,8 +52,7 @@ function resolver(){
     contextMenu: false
   });
 
-  var contU = document.getElementById('matrizU');
-  var htMatrizU = new Handsontable(contU, {
+  var htMatrizU = new Handsontable($("#matrizU")[0], {
     data: res.U,
     minSpareRows: 0,
     minSpareCols: 0,
@@ -59,8 +61,7 @@ function resolver(){
     contextMenu: false
   });
 
-  var contP = document.getElementById('vectorP');
-  var htVectorP = new Handsontable(contP, {
+  var htVectorP = new Handsontable($("#vectorP")[0], {
     data: res.p,
     minSpareRows: 0,
     minSpareCols: 0,
@@ -68,8 +69,6 @@ function resolver(){
     colHeaders: false,
     contextMenu: false
   });
-
-
 }
 
 function descomposicionLU(A){
@@ -86,10 +85,10 @@ function descomposicionLU(A){
     U[i] = new Array(n);
     for(j=0;j<n;j++){
       L[i][j]=0;
-      U[i][j]=A[i][j];      
-    }    
+      U[i][j]=A[i][j];
+    }
   }
-    
+
   for(k=0;k<n;k++){
     //Encuentro pivot e intercambio filas de A
     max=Math.abs(U[k][k]);
@@ -109,12 +108,12 @@ function descomposicionLU(A){
       }
       var temp=p[k]; p[k]=p[indMax]; p[indMax]=temp;
     }
-    
+
     L[k][k]=1;
     for(i=k+1;i<n;i++){
       if(U[k][k]==0){
         alert("Error en descomposicion LU");
-        return -1;
+        return false;
       }
       L[i][k]=U[i][k]/U[k][k];
       for(j=k+1;j<n;j++){
@@ -122,7 +121,7 @@ function descomposicionLU(A){
       }
     }
   }
-        
+
   for(i=0;i<n;i++){
     for(j=0;j<i;j++){
       U[i][j]=0;
@@ -132,8 +131,8 @@ function descomposicionLU(A){
   var pCol = new Array();
   for(i=0;i<n;i++){
     pCol[i]= new Array(1);
-    pCol[i][0]=p[i];    
+    pCol[i][0]=p[i];
   }
-  
+
   return {L: L, U: U, p: pCol};
 }
