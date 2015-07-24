@@ -28,13 +28,10 @@ function resolver(){
   $("#vectorX").html("");
   mostrarVector(xCol,$("#vectorX")[0],{readOnly: true})
   $("#btnInfoAdicional").show();
-  $("#LUp").hide();
-  $("#AinvDiv").hide();
-  $("#detDiv").hide();
+  $("#infoAdicional").hide();
 }
 
 function mostrarInfoExtra(){
-  $("#LUp").show();
   $("#matrizL").html("");
   $("#matrizU").html("");
   $("#vectorP").html("");
