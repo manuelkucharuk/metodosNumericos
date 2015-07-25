@@ -1,7 +1,7 @@
 var A=null;
 var bCol=null;
 $(document).ready(function(){
-  $("#matrizA").height($("#matrizA").width()/2);
+  $("#matrizA").height($("#matrizA").width()/3);
   $("#vectorB").height($("#matrizA").height());
   $("#vectorX").height($("#matrizA").height());
 
