@@ -1,7 +1,7 @@
 var A=null;
 var bCol=null;
 $(document).ready(function(){
-  $("#matrizA").height($("#matrizA").width()/2);
+  $("#matrizA").height($("#matrizA").width()/3);
   $("#vectorB").height($("#matrizA").height());
   $("#vectorX").height($("#matrizA").height());
 
@@ -15,7 +15,7 @@ $(document).ready(function(){
       ];
 
   bCol = [[11], [6], [10]];
-  var xCol =[["?"],["?"],["?"]]; 
+  var xCol =[["?"],["?"],["?"]];
 
   mostrarMatriz(A,$("#matrizA")[0]);
   mostrarVector(bCol,$("#vectorB")[0]);
@@ -24,6 +24,20 @@ $(document).ready(function(){
 
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function redondearMatriz(M){
+  var n,m;
+  var n=M.length;
+  var mat=new Array(n);
+  for(var i=0;i<n;i++){
+    m=M[i].length;
+    mat[i]=new Array(m);
+    for(var j=0;j<m;j++){
+      mat[i][j]=parseFloat(parseFloat(M[i][j]).toFixed(3));
+    }
+  }
+  return mat;
 }
 
 function validarMatrizA(){
@@ -44,7 +58,7 @@ function validarVectorB(){
   for(i=0;i<filasB;i++){
     if(!isNumber(bCol[i][0])) return false;
     }
-  return true;  
+  return true;
 }
 
 function mostrarMatriz(M,lugar,opt){

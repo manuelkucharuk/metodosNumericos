@@ -1,51 +1,53 @@
 function resolver(){
   $("#infoAdicional").hide();
+  $("#btnInfoAdicional").hide();
+  $("#vectorX").html("");
+
+
+  //Comprobación de errores
   if(!validarMatrizA() || !validarVectorB()){
-    alert("Verificar entrada.\nLa matriz A debe ser cuadrada.\nEl vector b debe tener tantas filas como la matriz A");
+    alert("Verificar entrada.\n"+
+    "La matriz A debe ser cuadrada.\n"+
+    "El vector b debe tener tantas filas como la matriz A");
     return;
   }
 
-  LUp=descomposicionLU(A.slice(0,-1)); //Variable global
+
+  LUp=descomposicionLU(A); //Variable global
   if(!LUp) {alert("Error en descomposicion LU"); return;}
-
   determinante=det(LUp.U); //Variable global
-  if(determinante==0){
-    alert("Matriz singular");
-    return;
-  }
+  if(determinante==0){alert("Matriz singular");return;}
 
   //De tabla en columnas a array de una dimensión
   var b=Array(bCol.length-1);
   for(var i=0;i<bCol.length-1;i++){b[i]=bCol[i][0];}
-
   //Resuelvo
   var y=sustituir(LUp.L,b,'inf',LUp.p);
   var x=sustituir(LUp.U,y,'sup');
-
-  //De array de una dimensión a tabla en columnas 
+  //De array de una dimensión a tabla en columnas
   var xCol=Array(x.length);
   for(var i=0;i<x.length;i++){xCol[i] = new Array(1); xCol[i][0] = x[i];}
-  
   //Muestro el resultado y el otro botón
-  $("#vectorX").html("");
-  mostrarVector(xCol,$("#vectorX")[0],{readOnly: true})
+  mostrarVector(redondearMatriz(xCol),$("#vectorX")[0],{readOnly: true})
   $("#btnInfoAdicional").show();
 }
 
-function mostrarInfoExtra(){
+function mostrarInfoAdicional(){
   $("#matrizL").html("");
   $("#matrizU").html("");
   $("#vectorP").html("");
   $("#matrizAinv").html("");
 
-  mostrarMatriz(LUp.L,$("#matrizL")[0],{readOnly: true, minSpareRows: 0, minSpareCols: 0});
-  mostrarMatriz(LUp.U,$("#matrizU")[0],{readOnly: true, minSpareRows: 0, minSpareCols: 0});
-  mostrarVector(LUp.p,$("#vectorP")[0],{readOnly: true, minSpareRows: 0});
-
-
+  mostrarMatriz(redondearMatriz(LUp.L),$("#matrizL")[0],
+    {readOnly: true, minSpareRows: 0, minSpareCols: 0});
+  mostrarMatriz(redondearMatriz(LUp.U),$("#matrizU")[0],
+    {readOnly: true, minSpareRows: 0, minSpareCols: 0});
+  mostrarVector(redondearMatriz(LUp.p),$("#vectorP")[0],
+    {readOnly: true, minSpareRows: 0});
+  mostrarMatriz(redondearMatriz(matrizInvLU(LUp)),$("#matrizAinv")[0],
+    {readOnly: true, minSpareRows: 0, minSpareCols: 0});
+  $("#det").text(parseFloat(determinante.toFixed(2)));
   $("#infoAdicional").show();
-  mostrarMatriz(matrizInvLU(LUp),$("#matrizAinv")[0],{readOnly: true, minSpareRows: 0, minSpareCols: 0});
-  $("#det").text(determinante);
 }
 
 function descomposicionLU(A){
@@ -133,7 +135,7 @@ function sustituir(A,b,tipo,p){
     for(i=0;i<n;i++) {b1[i]=b[p[i]];}
     b=b1;
   }
-  
+
   for(i=0;i<n;i++) x[i]=0;
   if(tipo=='sup'){
     for(i=n-1;i>-1;i--){
@@ -153,7 +155,7 @@ function sustituir(A,b,tipo,p){
 }
 
 function det(T){
-  //Determinante de una matriz triangular  
+  //Determinante de una matriz triangular
   var n=T.length;
   var d=1;
   for(i=0;i<n;i++) d*=T[i][i];
@@ -175,7 +177,6 @@ function matrizInvLU(descLUp){
       Ainv[i][j]=0;
     }
   }
-
 
   for(k=0;k<n;k++){
     e = new Array(n);
