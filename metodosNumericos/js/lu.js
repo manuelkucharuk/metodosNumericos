@@ -1,4 +1,5 @@
 function resolver(){
+  $("#infoAdicional").hide();
   if(!validarMatrizA() || !validarVectorB()){
     alert("Verificar entrada.\nLa matriz A debe ser cuadrada.\nEl vector b debe tener tantas filas como la matriz A");
     return;
@@ -17,6 +18,7 @@ function resolver(){
   var b=Array(bCol.length-1);
   for(var i=0;i<bCol.length-1;i++){b[i]=bCol[i][0];}
 
+  //Resuelvo
   var y=sustituir(LUp.L,b,'inf',LUp.p);
   var x=sustituir(LUp.U,y,'sup');
 
@@ -28,7 +30,6 @@ function resolver(){
   $("#vectorX").html("");
   mostrarVector(xCol,$("#vectorX")[0],{readOnly: true})
   $("#btnInfoAdicional").show();
-  $("#infoAdicional").hide();
 }
 
 function mostrarInfoExtra(){
