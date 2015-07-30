@@ -5,7 +5,7 @@ function resolver(){
 
 
   //Comprobación de errores
-  if(!validarMatrizA() || !validarVectorB()){
+  if(!validarMatriz(A) || !validarVector(A,bCol)){
     alert("Verificar entrada.\n"+
     "La matriz A debe ser cuadrada.\n"+
     "El vector b debe tener tantas filas como la matriz A");
