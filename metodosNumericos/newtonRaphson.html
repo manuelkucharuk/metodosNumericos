@@ -25,7 +25,7 @@
         <div class="page-header">
           <h1>Newton - Raphson <small>Raíces de ecuaciones no lineales</small></h1>
         </div>
-      </div>  
+      </div>
       <div class="row">
         <div class="col-sm-4">
           <form>
@@ -44,7 +44,7 @@
               </div>
 
               <div class="form-group">
-                <button type="button" class="btn" onClick="graficar();dibujarx0();">Graficar</button>
+                <button type="button" class="btn" onClick="graficar();dibujarTangente();">Graficar</button>
               </div>
 
             </div>
@@ -54,11 +54,12 @@
               <div class="row">
                 <div class="col-sm-8">
                   <label for="derivada" class="control-label">Insertar Derivada</label>
-                  <input type="text" class="form-control" id="derivada" placeholder="Ej: 6*x">
+                  <input type="text" class="form-control" onchange="actualizarTangente()"
+                  id="derivada" placeholder="Ej: 6*x">
                 </div>
                 <div class="col-sm-4 form-horizontal">
                   <label for="x0" class="control-label">x<sub>0</sub></label>
-                  <input type="text" class="form-control" id="x0" placeholder="1" oninput="actualizarx0()">
+                  <input type="text" class="form-control" id="x0" placeholder="1" oninput="actualizarTangente()">
                 </div>
               </div>
 
@@ -81,9 +82,11 @@
 
           </form>
 
-          <div id="raiz"></div>
-          <div id="cantPasos"></div>
-          <div id="errorMaximo"></div>
+          <div id="resultado">
+            <div id="raiz"></div>
+            <div id="cantPasos"></div>
+            <div id="errorMaximo"></div>
+          </div>
         </div>
 
         <div class="col-sm-8">

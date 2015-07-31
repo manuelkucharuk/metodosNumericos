@@ -9,11 +9,11 @@ function dibujarSecante(){
   var p2Y=f(p2X);
 
   var p1=board.create('point',[p1X,f(p1X)],
-    {strokeColor: '#0000FF', name: 'p1'});
+    {color: '#0000FF', name: 'p1', withLabel: false});
   var p2=board.create('point',[p2X,f(p2X)],
-    {strokeColor: '#0000FF', name: 'p2'});
+    {color: '#0000FF', name: 'p2', withLabel: false});
   board.create('line',[p1,p2],
-    {strokeColor: '#0000FF', name: 'secante'});
+    {strokeColor: '#0000FF', name: 'secante', fixed: true});
 
   actualizarInputsAprox();
 }
@@ -25,7 +25,7 @@ function actualizarLineaSecante(){
   var p1X=parseFloat($("#p1X").val());
   var p2X=parseFloat($("#p2X").val());
 
-  limitesValidos($("#aproxDerivada"),p1X,p2X);
+  //limitesValidos($("#aproxDerivada"),p1X,p2X);
   p1.setPosition(JXG.COORDS_BY_USER,[p1X,f(p1X)]);
   p2.setPosition(JXG.COORDS_BY_USER,[p2X,f(p2X)]);
 
@@ -44,22 +44,10 @@ function actualizarInputsAprox(){
   p1.on('drag',function(){
     p1.moveTo([p1.X(),f(p1.X())]);
     $("#p1X").val(p1.X());
-    if(limitesValidos($("#aproxDerivada"),p1.X(),p2.X())){
-      $("#buscarRaiz").show();
-    }
-    else {
-      $("#buscarRaiz").hide()
-    }
   });
 
   p2.on('drag',function(){
     p2.moveTo([p2.X(),f(p2.X())]);
     $("#p2X").val(p2.X());
-    if(limitesValidos($("#aproxDerivada"),p1.X(),p2.X())){
-      $("#buscarRaiz").show();
-    }
-    else {
-      $("#buscarRaiz").hide()
-    }
   });
 }

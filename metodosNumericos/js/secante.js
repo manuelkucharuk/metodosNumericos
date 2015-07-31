@@ -2,43 +2,40 @@
 function raiz(){
 	var res=secante();
 	if(!res){return;}
-  
-  dibujarRaiz(res.raiz);  
+
+  dibujarRaiz(res.raiz);
 	$("#raiz").html("<H3>Raiz="+res.raiz+"<H3>");
 	$("#cantPasos").text("Cant. pasos= "+res.cantPasos);
 	$("#errorMaximo").text("Error máximo="+res.errorMax);
+	$("#resultado").show();
 }
 
 
 function secante(){
-	var x0=parseFloat($("#aproxInf").val());
-	var x1=parseFloat($("#aproxSup").val());
-	
+	var x0=parseFloat($("#p1X").val());
+	var x1=parseFloat($("#p2X").val());
+
   var xTemp;
   var eps=parseFloat($("#errorMax").val());
   var n=parseInt($("#cantPasosMax").val());
 
 	var i=0;
   var d=Infinity;
-  var exito=true;
   while(d>eps && i<n){
     xTemp=x1-f(x1)*(x1-x0)/(f(x1)-f(x0));
-    /*Si no se reduce la diferencia, el metodo no converge*/
-    if (d<Math.abs(xTemp-x1)){ 
-      exito=false;
-      break;
+    //Si no se reduce la diferencia, el metodo no converge
+    if (d<Math.abs(xTemp-x1)){
+			alert("El método no converge");
+		  return;
     }
-
-    d=Math.abs(x1-x0);  
+    d=Math.abs(x1-x0);
     x0=x1;
     x1=xTemp;
     i++;
   }
-  if(exito){
-    return {errorMax: d, cantPasos: i-1, raiz: x1};
-  }
-  else{
-    alert("No se alcanzó la precisión de "+eps+" en "+n+" pasos");
-    return null;
-  } 
+  if(i>=n){
+  	alert("No se alcanzó la precisión de "+eps+" en "+n+" pasos");
+  	return;
+	}
+	return {errorMax: d, cantPasos: i-1, raiz: x1};
 }

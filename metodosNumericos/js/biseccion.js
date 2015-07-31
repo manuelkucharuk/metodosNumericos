@@ -2,17 +2,23 @@
 function raiz(){
 	var res=biseccion();
 	if(!res){return;}
-  
-  dibujarRaiz(res.raiz);  
+
+  dibujarRaiz(res.raiz);
 	$("#raiz").html("<H3>Raiz="+res.raiz+"<H3>");
 	$("#cantPasos").text("Cant. pasos= "+res.cantPasos);
 	$("#errorMaximo").text("Error máximo="+res.errorMax);
+	$("#resultado").show();
 }
 
 
 function biseccion(){
 	var a=parseFloat($("#aproxInf").val());
 	var b=parseFloat($("#aproxSup").val());
+	if(a>b){
+		var temp=a;
+		a=b;
+		b=temp;
+	}
 	var c;
 	var eps=parseFloat($("#errorMax").val());
 	var n=parseInt($("#cantPasosMax").val());
@@ -26,7 +32,7 @@ function biseccion(){
     tol=Math.abs(b-a);
     sa=sgn(f(a));
     sb=sgn(f(b));
-    
+
     if(sa==0){
       c=a;
       tol=0;
@@ -37,7 +43,7 @@ function biseccion(){
       tol=0;
       break;
     }
-    
+
     c=(b+a)/2;
     sc=sgn(f(c));
     if(sc==0){
@@ -46,7 +52,7 @@ function biseccion(){
     }
     if(sa==sc){a=c;}
     else{b=c;}
-    
+
     i++;
   }
 
@@ -54,6 +60,6 @@ function biseccion(){
   	alert("No se alcanzó la precisión de "+eps+" en "+n+" pasos");
   	return null;
   }
-  
+
   return {errorMax: tol, cantPasos: i, raiz: c};
 }

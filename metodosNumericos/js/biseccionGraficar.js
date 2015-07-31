@@ -35,21 +35,9 @@ function actualizarInputsAprox(){
   //Actualiza input text cuando se arrastran las lineas
   lineaAproxInf.on('drag',function(){
     $("#aproxInf").val(pInf.X());
-    if(limitesValidos($("#formAprox"),pInf.X(),pSup.X())){
-      $("#buscarRaiz").show();
-    }
-    else {
-      $("#buscarRaiz").hide()
-    }
   });
 
   lineaAproxSup.on('drag',function(){
     $("#aproxSup").val(pSup.X());
-    if(limitesValidos($("#formAprox"),pInf.X(),pSup.X())){
-      $("#buscarRaiz").show();
-    }
-    else {
-      $("#buscarRaiz").hide()
-    };
   });
 }

@@ -16,8 +16,8 @@
     <script language="javascript" type="text/javascript" src="js/graficar.js"></script>
     <script language="javascript" type="text/javascript" src="js/biseccion.js"></script>
     <script language="javascript" type="text/javascript" src="js/biseccionGraficar.js"></script>
-    
- 
+
+
   </head>
   <body>
     <div class="container">
@@ -25,7 +25,7 @@
         <div class="page-header">
           <h1>Bisección <small>Raíces de ecuaciones no lineales</small></h1>
         </div>
-      </div>  
+      </div>
       <div class="row">
         <div class="col-sm-4">
           <form>
@@ -38,7 +38,7 @@
 
               <div class="form-inline" id="formLimGraficos">
                 <label for="xMin" class="sr-only">x Mín</label>
-                <input type="text" class="form-control" id="xMin" placeholder="x Mínimo. Ej: -5">            
+                <input type="text" class="form-control" id="xMin" placeholder="x Mínimo. Ej: -5">
                 <label for="xMax" class="sr-only">x Máx</label>
                 <input type="text" class="form-control" id="xMax" placeholder="x Máximo. Ej: 5">
               </div>
@@ -47,14 +47,14 @@
                 <button type="button" class="btn" onClick="graficar(); dibujarLineas()">Graficar</button>
               </div>
 
-            </div>  
+            </div>
 
 
             <div class="row hidden" id="infoExtra">
               <div class="row">
                 <div class="form-group col-sm-6">
-                  <label class="control-label">Aproximación raíz</label>  
-                  <input type="text" class="form-control" id="aproxInf" oninput="actualizarLineasAprox(this)">   
+                  <label class="control-label">Aproximación raíz</label>
+                  <input type="text" class="form-control" id="aproxInf" oninput="actualizarLineasAprox(this)">
                   <input type="text" class="form-control" id="aproxSup" oninput="actualizarLineasAprox(this)">
                 </div>
               </div>
@@ -63,23 +63,25 @@
                   <label for="cantPasosMax" class="control-label">Cant. pasos</label>
                   <input type="text" class="form-control" id="cantPasosMax" value="100">
                 </div>
-                <div class="col-sm-6">  
+                <div class="col-sm-6">
                   <label for="errorMax" class="control-label">Error máx</label>
                   <input type="text" class="form-control" id="errorMax" value="1E-6">
                 </div>
               </div>
-              <div class="row">  
+              <div class="row">
                 <div class="form-group col-sm-6">
                   <button type="button" class="btn btn-primary" id="buscarRaiz" onClick="raiz()">Buscar Raíz</button>
-                </div>  
+                </div>
               </div>
-            </div>  
-            
+            </div>
+
           </form>
 
-          <div id="raiz"></div>
-          <div id="cantPasos"></div>
-          <div id="errorMaximo"></div>
+          <div id="resultado">
+            <div id="raiz"></div>
+            <div id="cantPasos"></div>
+            <div id="errorMaximo"></div>
+          </div>  
         </div>
 
         <div class="col-sm-8">
@@ -90,4 +92,3 @@
 
   </body>
 </html>
-

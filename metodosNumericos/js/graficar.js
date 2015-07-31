@@ -36,10 +36,12 @@ function graficar(){
 		graficarFuncion(xMin,xMax);
 		$("#grafico").show();
     $("#infoExtra").removeClass('hidden');
+		$("#resultado").hide();
 	}
 	else {
 		$("#grafico").hide();
     $("#infoExtra").addClass('hidden');
+		$("#resultado").hide();
 	}
 }
 
