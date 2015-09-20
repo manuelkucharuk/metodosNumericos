@@ -98,11 +98,11 @@
 	});
 
 	$("#izq").on("click",function(){
-		brd.moveOrigin(brd.origin.scrCoords[1] - brd.canvasWidth * 0.1, brd.origin.scrCoords[2]);
+		brd.moveOrigin(brd.origin.scrCoords[1] + brd.canvasWidth * 0.1, brd.origin.scrCoords[2]);
 	});
 
 	$("#der").on("click",function(){
-		brd.moveOrigin(brd.origin.scrCoords[1] + brd.canvasWidth * 0.1, brd.origin.scrCoords[2]);
+		brd.moveOrigin(brd.origin.scrCoords[1] - brd.canvasWidth * 0.1, brd.origin.scrCoords[2]);
 	});
 
 	$("#up").on("click",function(){
