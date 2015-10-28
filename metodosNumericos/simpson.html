@@ -44,7 +44,7 @@
               </div>
 
               <div class="form-group">
-                <button type="button" class="btn" onClick="graficar(); dibujarArea();">Graficar</button>
+                <button type="button" class="btn" onClick="graficar(); crearArea();">Graficar</button>
               </div>
 
             </div>
@@ -54,8 +54,8 @@
               <div class="row">
                 <div class="form-group col-sm-6">
                   <label class="control-label">Límites de integración</label>
-                  <input type="text" class="form-control" id="limInf" oninput="actualizarLimInf()">
-                  <input type="text" class="form-control" id="limSup" oninput="actualizarLimSup()">
+                  <input type="text" class="form-control" id="limInf" onchange="crearArea()">
+                  <input type="text" class="form-control" id="limSup" onchange="crearArea()">
                 </div>
               </div>
               <div class="row">
