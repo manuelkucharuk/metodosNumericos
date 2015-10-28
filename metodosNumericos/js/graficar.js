@@ -64,5 +64,5 @@ function graficarFuncion(xMin,xMax){
 	var ySup=yMax+0.05*(yMax-yMin);
 
 	board=JXG.JSXGraph.initBoard('grafico', {boundingbox:[xInf,ySup,xSup,yInf], keepaspectratio: false, axis:true});
-	board.create('curve', [datX,datY],{strokeColor:'red',strokeWidth:2, name:'curva'});
+	board.create('curve',[datX,datY],{strokeColor:'red',strokeWidth:2, name:'curva'});
 }
