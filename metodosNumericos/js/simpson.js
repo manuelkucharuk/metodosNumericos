@@ -1,35 +1,44 @@
-function raiz(){
-	var res=newtonRaphson();
-	if(!res){return;}
+function integrar(){
+	var res=simpson();
+	if(!res)return;
 
-  dibujarRaiz(res.raiz);
-	$("#raiz").html("<H3>Raiz="+res.raiz+"<H3>");
-	$("#cantPasos").text("Cant. pasos= "+res.cantPasos);
-	$("#errorMaximo").text("Error máximo="+res.errorMax);
+	$("#integral").html("<H3>Integral="+res.integral.toFixed(5)+"</H3>");
 	$("#resultado").show();
 }
 
-function newtonRaphson(){
-	var x0=parseFloat($("#x0").val());
-	var x1=x0;
-	var eps=parseFloat($("#errorMax").val());
-	var n=parseInt($("#cantPasosMax").val());
+function simpson(){
+	var a = parseFloat($("#limInf").val());
+	var b = parseFloat($("#limSup").val());
+	
+	var x, j;
+	var fvec = [];
+	var sumaPar = 0
+	var sumaImpar = 0;
+	var n = cantPuntos();
+	if(!n) return;
+	var h = (b-a)/n;
 
-	var i=0;
-	var d=Infinity;
-	while(d>eps && i<n){
-		x1=x0-f(x0)/fp(x0);
-		if (d<Math.abs(x1-x0)){ //Si no se reduce la diferencia, el metodo no converge
-			alert("El método no converge");
-			return;
-		}
-		d=Math.abs(x1-x0);
-		x0=x1;
-		i++;
+	j = 1;
+	x = a+h;
+	while(j<n){
+		if(j%2==0) sumaPar+=f(x);
+		else sumaImpar+=f(x);
+
+		j++;
+		x += h; 
 	}
-	if(i>=n){
-		alert("No se alcanzó la precisión de "+eps+" en "+n+" pasos");
-  	return;
-	}
-	return {errorMax: d, cantPasos: i-1, raiz: x1};
+
+	return {integral: h/3*(f(a)+4*sumaImpar+2*sumaPar+f(b))};
+}
+
+function cantPuntos(){
+  var n = parseInt($("#cantPuntos").val());
+  if(isNaN(n) || n%2==0) {
+    if(n%2==0) n++;
+    else if(isNaN(n)) n=1;
+    $("#cantPuntos").val(n);
+  }
+  if(n>1000000){alert("Demasiados puntos"); return false;}
+
+  return n+1; //+1 para incluir al ultimo punto
 }

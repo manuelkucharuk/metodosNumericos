@@ -35,12 +35,12 @@ function graficar(){
 	if (limitesValidos($("#formLimGraficos"),xMin,xMax)){
 		graficarFuncion(xMin,xMax);
 		$("#grafico").show();
-    $("#infoExtra").removeClass('hidden');
-		$("#resultado").hide();
+    	$("#infoExtra").removeClass('hidden');
+		//$("#resultado").hide();
 	}
 	else {
 		$("#grafico").hide();
-    $("#infoExtra").addClass('hidden');
+    	$("#infoExtra").addClass('hidden');
 		$("#resultado").hide();
 	}
 }
