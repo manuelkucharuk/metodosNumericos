@@ -54,7 +54,7 @@ function llenarValores(limites){
   var min = limites.min;
   var max = limites.max;
 
-  var step = (max-min)/50;
+  var step = (max-min)/200;
   if(step<Math.pow(10,-6)) step=0.001;
 
   datX.push(min); datY.push(0);
