@@ -84,9 +84,11 @@ function actualizarAreaDesdeLineas(){
     board.elementsByName.lAreaInf = temp;
   }
 
+  board.suspendUpdate();
   var datos = llenarValores({min: min, max: max});
   area.dataX = datos[0];
   area.dataY = datos[1];
+  board.unsuspendUpdate();
 
   $("#limInf").val(min);
   $("#limSup").val(max);
